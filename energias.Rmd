@@ -19,6 +19,30 @@ library(readxl)
 energy <- read_csv("all_energy_statistics.csv")
 countries <- read_csv("countries.csv")
 
+
+countries <- read_csv("countries.csv") %>% 
+  dplyr::rename(country = "Country" )
+
+region <- dplyr::select(countries, country, Region, `GDP ($ per capita)`) %>% 
+  dplyr::rename(gdp = `GDP ($ per capita)`)
+
+energy <- read_csv("all_energy_statistics.csv") %>% 
+  dplyr::rename(country = "country_or_area" ) 
+
+data <- energy %>% 
+  dplyr::full_join(region)
+
+wind <- dplyr::select(data, Region, country, year,
+                      commodity_transaction, quantity,
+                      category, gdp) 
+
+wind <- dplyr::filter(data, category == "wind_electricity") %>% 
+  group_by (Region) %>% 
+  summarize(mean_prod = mean(quantity), mean_gdp = mean(gdp)) %>% 
+  arrange(desc(mean_prod)) %>% 
+  ungroup()
+
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -41,6 +65,9 @@ When you click the **Knit** button a document will be generated that includes bo
 ## Métodos
 
 ```{r cars, echo = TRUE}
+
+
+
 summary(cars)
 ```
 
