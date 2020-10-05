@@ -1,13 +1,28 @@
 ---
 title: "Energías Renovables"
-author: "AParra"
+author: "Andrea Parra"
 date: "04-10-2020"
 output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
+
+library(tidyverse)
+library(knitr)
+library(magrittr)
+library(broom)
+library(kableExtra)
+library(dplyr)
+library(ggplot2)
+library(bookdown)
+library(readxl)
+energy <- read_csv("all_energy_statistics.csv")
+countries <- read_csv("countries.csv")
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+# Hola
 
 ## R Markdown
 
@@ -15,21 +30,31 @@ This is an R Markdown presentation. Markdown is a simple formatting syntax for a
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
+#Introducción
+## Energías renovables
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Slide with R Output
+# Métodos
+## Métodos
 
 ```{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Slide with Plot
+# Resultados
+## Resultados
 
 ```{r pressure}
 plot(pressure)
 ```
 
+# Discusión
+## Discusión
+
+# Conclusiones
+## Conclusiones
+
+## Bibliografía
